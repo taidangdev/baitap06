@@ -3,14 +3,40 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
-    <title>Category Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Category Manager - StarShop</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
     <link th:href="@{/css/app.css}" rel="stylesheet"/>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'%3E%3Cpath d='M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z'/%3E%3C/svg%3E">
 </head>
-<body>
-<div th:replace="fragments/header :: header"></div>
-
-<main class="container" layout:fragment="content"></main>
-
-<div th:replace="fragments/footer :: footer"></div>
+<body class="bg-gray-50 min-h-screen">
+    <div class="app-container">
+        <!-- Header -->
+        <div th:replace="fragments/header :: header"></div>
+        
+        <!-- Main Content -->
+        <main class="main-content flex-1">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div layout:fragment="content">
+                    <!-- Page content will be inserted here -->
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script th:src="@{/js/app.js}"></script>
 </body>
 </html>

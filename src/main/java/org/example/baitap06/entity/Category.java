@@ -22,7 +22,7 @@ public class Category {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    @Column(length = 50)
+    @Column(length = 255)
     private String icon;
 
     @PrePersist
