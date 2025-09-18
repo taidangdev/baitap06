@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Category Manager</title>
+    <link th:href="@{/css/app.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main class="container" layout:fragment="content"></main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

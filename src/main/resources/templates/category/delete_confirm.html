@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<div layout:fragment="content" style="text-align:center">
+    <h3>Xác nhận xóa</h3>
+    <p>Xóa <b th:text="${category.name}">Category</b> ?</p>
+    <form th:action="@{/categories/delete}" method="post">
+        <input type="hidden" name="id" th:value="${category.id}">
+        <button type="submit">Xóa</button>
+        <a th:href="@{/categories}">Hủy</a>
+    </form>
+</div>
+</body>
+</html>

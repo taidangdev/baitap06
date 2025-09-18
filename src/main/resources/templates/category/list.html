@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<div layout:fragment="content">
+    <h3>Danh sách Category</h3>
+
+    <form th:action="@{/categories}" method="get" style="margin-bottom:10px">
+        <input type="text" name="keyword" placeholder="Từ khóa..." th:value="${keyword}">
+        <select name="size" th:value="${size}">
+            <option>5</option><option>10</option><option>20</option>
+        </select>
+        <button type="submit">Tìm</button>
+    </form>
+
+    <p><a th:href="@{/categories/new}">+ Thêm Category</a></p>
+
+    <table border="1" cellpadding="6" cellspacing="0" width="100%">
+        <thead>
+        <tr><th>ID</th><th>Name</th><th>Description</th><th>Icon</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${categoryPage.content}">
+            <td th:text="${c.id}">1</td>
+            <td th:text="${c.name}">Name</td>
+            <td th:text="${c.description}">Desc</td>
+            <td><img th:if="${c.icon}" th:src="@{${c.icon}}" width="24" alt="icon"></td>
+            <td>
+                <a th:href="@{'/categories/edit/' + ${c.id}}">Sửa</a> |
+                <a th:href="@{'/categories/delete/' + ${c.id}}">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top:8px">
+        Trang [[${categoryPage.number + 1}]] / [[${categoryPage.totalPages}]]
+        <span th:if="${!categoryPage.first}">
+      <a th:href="@{/categories(page=${categoryPage.number-1},size=${categoryPage.size},keyword=${keyword})}">« Trước</a>
+    </span>
+        <span th:each="i : ${#numbers.sequence(0, categoryPage.totalPages-1)}">
+      <a th:href="@{/categories(page=${i},size=${categoryPage.size},keyword=${keyword})}"
+         th:text="${i+1}"
+         th:style="${i} == ${categoryPage.number} ? 'font-weight:bold' : ''">1</a>
+    </span>
+        <span th:if="${!categoryPage.last}">
+      <a th:href="@{/categories(page=${categoryPage.number+1},size=${categoryPage.size},keyword=${keyword})}">Sau »</a>
+    </span>
+    </div>
+</div>
+</body>
+</html>
